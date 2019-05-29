@@ -5,15 +5,15 @@ import uuid
 states=['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
 
 
-state_name=pd.read_csv('/home/tacticalforesight/Documents/gitH/TF_Storage/Tactical Foresight/Pro Bono/Campaign Finance/State_Abbrev.csv',index_col=1)
+state_name=pd.read_csv('/State_Abbrev.csv',index_col=1)
 print('state_name')
 print(state_name.columns)
 print('\n')
-state_income=pd.read_csv('/home/tacticalforesight/Documents/gitH/TF_Storage/Tactical Foresight/Pro Bono/Campaign Finance/State_Income.csv',index_col=0)
+state_income=pd.read_csv('/State_Income.csv',index_col=0)
 print('state_income')
 print(state_income.columns)
 print('\n')
-state_affil=pd.read_csv('/home/tacticalforesight/Documents/gitH/TF_Storage/Tactical Foresight/Pro Bono/Campaign Finance/State_Party.csv',index_col=0)
+state_affil=pd.read_csv('/State_Party.csv',index_col=0)
 print('state_affil')
 print(state_affil.columns)
 print('\n')
@@ -109,16 +109,15 @@ for i in range(50000):
 		print(i)
 	print('\n\n')
 	ballots[rec['Ballot_Measure']]=rec
-	contributors[rec['Ballot_Measure']]='done'
 ballots=pd.DataFrame([i for i in ballots.values()])
-ballots.to_csv('/home/tacticalforesight/Desktop/Tactical Foresight/Pro Bono/Campaign Finance/Data/pseudo_ballots.csv')
+ballots.to_csv('/pseudo_ballots.csv')
 d=[]
-sys.exit()
+
 for recs in contributors.values():
 	d.extend(recs)
 contr=pd.DataFrame(d)
-contr.to_csv('/home/tacticalforesight/Desktop/Tactical Foresight/Pro Bono/Campaign Finance/Data/pseudo_contributors.csv')
+contr.to_csv('/pseudo_contributors.csv')
 
 result = pd.merge(contr, ballots, on='Ballot_Measure')
 print(result.head())
-result.to_csv('/home/tacticalforesight/Desktop/Tactical Foresight/Pro Bono/Campaign Finance/Data/pseudo_ballot_contrib_influence.csv')
+result.to_csv('/pseudo_ballot_contrib_influence.csv')
