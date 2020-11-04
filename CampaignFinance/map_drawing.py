@@ -12,6 +12,7 @@ import vincent
 
 m = folium.Map(location=[39.381266,-97.922211], zoom_start=5.3)
 sts="/districts/states/"
+# sts should point to a directory of http://github.com/unitedstates/districts
 for subdir, dirs, files in os.walk(sts):
 	if len(dirs)>3:
 		for state in dirs:
